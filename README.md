@@ -46,4 +46,46 @@ pip3 install graphene-django
 
 ##### What you need to do :)
 
-We will updated this after the meeting today!
+1. Edit questions.txt and add your (brief) answers. No need to spend too much time on it, we just want your best first attempt.
+
+2. Edit _api/models.py_ to contain the appropriate 4 classes. Remember that these represent the organization of your data. In particular, you need to have PurchaseModel, UserModel, PortfolioModel, and StockModel.
+``` 
+  PurchaseModel
+    timestamp - the timestamp (date and time) that the transaction occurred (note that "purchases" are both buys and sells of stocks)
+    user - a relation to the UserModel that created the transaction
+    symbol - a string of the symbol that was traded
+    price - a float representing the price of the stock in dollars that was traded
+    quantity - an integer representing the number of stocks that were traded
+
+  UserModel
+    first_name - the first name of the user
+    last_name - the last name of the user
+    api_token - the string representing the user's API token (a unique token which the user can use to authenticate their usage of the API)
+    password - the hashed representation of the user's password (the password they will provide to log in to the web interface)
+    username - the username which the user will use to log in to the web interface, also how they will reference themselves in using the API
+    portfolio - a reference to the PortfolioModel representing this user's portfolio
+
+  PortfolioModel
+    cash - a float representing the amount of cash which the user has in their portfolio
+
+  StockModel
+    portfolio - a reference to the PortfolioModel to which this stock belongs
+    symbol - the symbol of the stock that was purchased
+    quantity - an integer representing the amount of stock
+```
+3. Edit _api/schema.py_ to allow for the resolution of each of the models you just created (we need to be able to resolve via GraphQL each of the fields within the Django models)
+
+4. Edit _schema.py_ (just the very top portion!) to register your new schema in the global schema.
+
+5. Verify that you can still start the web server. You can load data into the webserver by creating MODELNAME.json containing the appropriate fields and JSON objects (see _users.json_ for an example) and then using the command ```python3 manage.py loaddate MODELNAME.json```. Once you have data, going to *http://127.0.0.1:8000/graphql* should let you query that data in the GraphQL console.
+
+6. If you would like to get ahead, you can start building out the logic in _api/views.py_; however that is not required at this time, and we'll explain in more depth next week. 
+
+7. Submit this portion of the assignment by executing the following commands:
+```
+git add .
+git commit -m "submitting first half"
+git push
+```
+
+8. Great job!
