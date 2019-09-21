@@ -46,6 +46,14 @@ pip3 install graphene-django
 
 ##### What you need to do :)
 
+*Setup* - run these commands after you have accepted the [assignment](https://classroom.github.com/a/3vMerwUf "Assignment Link"). (switch "USERNAME" for your username)
+```
+git clone https://github.com/Harvard-Crimson-Technology-Comp/f19-001-USERNAME.git
+cd f19-001-USERNAME
+git add remote src https://github.com/Harvard-Crimson-Technology-Comp/project1.git
+git pull src master
+```
+
 1. Edit questions.txt and add your (brief) answers. No need to spend too much time on it, we just want your best first attempt.
 
 2. Edit _api/models.py_ to contain the appropriate 4 classes. Remember that these represent the organization of your data. In particular, you need to have PurchaseModel, UserModel, PortfolioModel, and StockModel.
