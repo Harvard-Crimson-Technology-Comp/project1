@@ -14,8 +14,27 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, re_path, include
+from graphene_django.views import GraphQLView
+
+import project1.api.views as api_views
+import project1.web.views as web_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('graphql', GraphQLView.as_view(graphiql=True)),
+
+    ### this section redirects control flow to the API app in Django
+    path('api/TODO', api_views.remove_me), # should allow "buy"
+    path('api/TODO', api_views.remove_me), # should allow "sell"
+    path('api/TODO', api_views.remove_me), # should allow "list"
+    path('api/TODO', api_views.remove_me), # should allow "register"
+
+    ### this section redirects control flow to the Web app in Django
+    path('register', web_views.register),
+    path('login', web_views.login),
+    path('logout', web_views.logout),
+    path('dashboard', web_views.dashboard),
+    path('trade', web_views.trade),
+    path('', web_views.index)
 ]

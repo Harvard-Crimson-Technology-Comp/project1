@@ -1,0 +1,25 @@
+# Questions - no more than 3 sentences please
+
+Question 1. What is Django?
+
+# TODO
+
+Question 2. What is GraphQL?
+
+# TODO
+
+Question 3. How does Django "talk" to GraphQL?
+
+# TODO
+
+Question 4. Why do we use GraphQL + Django?
+
+# TODO
+
+Question 5. What is a Web API?
+
+# TODO
+
+Question 6. What is a "backend"?
+
+# TODO

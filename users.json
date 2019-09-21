@@ -1,0 +1,18 @@
+[
+    {
+        "model": "web.UserModel",
+        "pk": 1,
+        "fields": {
+            "name": "Nicholas",
+            "last_name": "Wong"
+        }
+    },
+    {
+        "model": "web.UserModel",
+        "pk": 2,
+        "fields": {
+            "name": "William",
+            "last_name": "Yao"
+        }
+    }
+]

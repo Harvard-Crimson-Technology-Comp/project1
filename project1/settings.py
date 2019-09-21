@@ -25,7 +25,10 @@ SECRET_KEY = '6*6-z4$#u7271e90d1d7%h368+#hq(q6yyid&y31efz4yw9%%7'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1'
+]
 
 
 # Application definition
@@ -37,6 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'project1.web',
+    'project1.api',
+    'graphene_django'
 ]
 
 MIDDLEWARE = [
@@ -69,6 +75,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'project1.wsgi.application'
 
+GRAPHENE = {
+    'SCHEMA': 'project1.schema.schema'
+}
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
