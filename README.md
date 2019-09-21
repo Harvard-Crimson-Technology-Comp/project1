@@ -50,7 +50,7 @@ pip3 install graphene-django
 ```
 git clone https://github.com/Harvard-Crimson-Technology-Comp/f19-001-USERNAME.git
 cd f19-001-USERNAME
-git add remote src https://github.com/Harvard-Crimson-Technology-Comp/project1.git
+git remote add src https://github.com/Harvard-Crimson-Technology-Comp/project1.git
 git pull src master
 ```
 
