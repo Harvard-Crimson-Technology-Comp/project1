@@ -85,7 +85,7 @@ git pull src master
 
 4. Edit _schema.py_ (just the very top portion!) to register your new schema in the global schema.
 
-5. Verify that you can still start the web server. You can load data into the webserver by creating MODELNAME.json containing the appropriate fields and JSON objects (see _users.json_ for an example) and then using the command ```python3 manage.py loaddate MODELNAME.json```. Once you have data, going to *http://127.0.0.1:8000/graphql* should let you query that data in the GraphQL console.
+5. Verify that you can still start the web server. You can load data into the webserver by creating MODELNAME.json containing the appropriate fields and JSON objects (see _users.json_ for an example) and then using the command ```python3 manage.py loaddata MODELNAME.json```. Once you have data, going to *http://127.0.0.1:8000/graphql* should let you query that data in the GraphQL console.
 
 6. If you would like to get ahead, you can start building out the logic in _api/views.py_; however that is not required at this time, and we'll explain in more depth next week. 
 
