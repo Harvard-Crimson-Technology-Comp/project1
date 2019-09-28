@@ -8,9 +8,7 @@ This is an example of how these might look! Eventually all of this will be done 
 
 # the default page that your users would land on
 def index(request):
-    i = 3
-    j = 4
-    return HttpResponseNotFound(f'WEB: INDEX: MOVED: {i + j}')
+    return HttpResponseNotFound('WEB: INDEX: MOVED')
 
 # the registration page for your users
 def register(request):

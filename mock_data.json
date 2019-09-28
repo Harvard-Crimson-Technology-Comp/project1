@@ -1,0 +1,30 @@
+[
+    {
+        "model": "api.UserModel",
+        "pk": 1,
+        "fields": {
+            "first_name": "Nicholas",
+            "last_name": "Wong",
+            "api_token": "4475ca805343819d6aff41d67643eecb81a87ba2edf7aad3e99a443add2a9835427bad62ff517bc4b02a8e69c9fff415cbc4a23b1461067622cde31dd89252824633023e5618376bf3bd067e167a26cc6e1f998b98cd56f918d5715d8d3f7c921335ebaf3dcb528f02118675cf4420d774d9095130726c48beac02c3b9942806",
+            "password": "$2b$12$UYqkdFxNvZ.Zmj9fSw1qCefD1r1/bz49e.aNc20pGTLzFIFQMadGq",
+            "username": "nicholas.wong@thecrimson.com",
+            "portfolio": 1
+        }
+    },
+    {
+        "model": "api.PortfolioModel",
+        "pk": 1,
+        "fields": {
+            "cash": 100000
+        }
+    },
+    {
+        "model": "api.StockModel",
+        "pk": 1,
+        "fields": {
+            "portfolio": 1,
+            "symbol": "GOOG",
+            "quantity": 10
+        }
+    }
+]

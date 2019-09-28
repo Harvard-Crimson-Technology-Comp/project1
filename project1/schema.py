@@ -1,9 +1,9 @@
 import graphene
 
-import project1.web.schema
+import project1.api.schema
 
 all_schemas = [
-    project1.web.schema
+    project1.api.schema
 ]
 
 # You won't have to modify this here or in the real codebase ;)
