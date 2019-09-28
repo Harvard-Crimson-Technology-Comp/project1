@@ -97,3 +97,29 @@ git push
 ```
 
 8. Great job!
+
+-----
+
+##### 09/28 Update - Part 2!
+1. Welcome to the next portion of building our own web app! In order to pull instructions go ahead and run:
+```
+git pull src master
+```
+You will certainly get a slew of merge conflicts, and you're welcome to keep the incoming changes (our solutions) or reject them (use your own solutions). We do assume that your code works at least to the spec we provide - which means that all fields are named correctly and are of the correct type, but you are welcome to include additional information (we simply won't check the additional information!).
+
+2. In this part we want to add some functionality now that our database is set up and ready to go. This means that our backend API will need to become functional. There are a few steps to this process, but the high level overview is that incoming requests to our API will be parsed in _api/views.py_ and the database will be interacted with via code. You may also want to look at _api/urls.py_ in order to get requests to go where they're supposed to go. We don't particularly care how exactly you implement everything, so long as the sample requests and interface that we require are functional. (If that makes no sense, then see below for a concrete version of that)
+
+3. Buy - this view should accept HTTP POST requests containing an API token (named "api_token"), a stock symbol (named "symbol"), and a quantity (named "quantity"). Any other method of request should be rejected via HttpResponseNotAllowed (Django has a built in implementation of this behavior). You will want to check that the API token belongs to a user (and which user). You will be responsible for validating the symbol (verify that it exists on the NYSE - potentially look at a public API for this information - you may find the requests library very useful). You will also be responsible for verifying that the user can in fact make this purchase (do they have sufficient funds?). And finally you will need to adjust the user's portfolio, add a PurchaseModel entry, and add a StockModel entry. Upon failure, this view must return a JSON response containing at least the field "error" with an appropriate error message. Upon success, this view must return a JSON response containing at least the fields "symbol", "quantity", "timestamp" where timestamp is the time that was recorded in the PurchaseModel entry.
+
+4. Sell - this view should also only accept HTTP POST requests containing an API token (named "api_token"), a stock symbol (named "symbol"), and a quantity (named "quantity"). Any other method of request should be rejected via HttpResponseNotAllowed. Similarly to the buy view, sell will require you to verify that the user exists, that the symbol is within their portfolio, and that they have sufficient stock to sell that quantity. You will need to add an entry to PurchaseModel (do not remove old entries! simply add a new one recording the sale - there are several ways to indicate that it was a sale as opposed to a buy), modify the user's Portfolio, and modify the user's Stocks. Similarly to with buy, upon failure, this view must return a JSON response containing at least the field "error" with an appropriate error message. Upon success, this view must return a JSON response containing at least the fields "symbol", "quantity", "timestamp" where timestamp is the time that was recorded in the PurchaseModel entry.
+
+5. Register - this is the last complex view you will need! This is also the trickiest one - this view must accept only HTTP POST requests containing a first name ("first_name"), last name ("last_name"), username ("username"), and password ("password"). You will need to add the appropriate user model (verifying of course that someone with the same username does not exist already!), store their hashed password in this new model, and generate a unique API token for this user. Upon failure, this view must also return a JSON response containing at least the field "error" with an appropriate error message. Upon success, this view must return a JSON response containing at least the fields "username" and "api_token" with the appropriate contents. 
+
+6. And finally list - this is a view which must only accept HTTP GET requests which contain a single field, the user's API token ("api_token"). This only needs to verify that the API token corresponds to a user. Upon failure, this view must do as the previous 3 views do. Upon success, this view must return a JSON response containing at least the fields "stocks" (a list of JSON objects of the form ```{"symbol": "SYM", "quantity": #, "price": "12.34"}```), "cash", and "timestamp" (the time that the response was returned). 
+
+7. And that's it! You should have a functional API that allows for the creation of users, the purchase and sale of stocks, and the viewing of said stocks. For fun and profit! Submit with:
+```
+git add .
+git commit -m "submitting second half"
+git push
+```
