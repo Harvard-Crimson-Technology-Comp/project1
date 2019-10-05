@@ -25,12 +25,12 @@ urlpatterns = [
     path('graphql', GraphQLView.as_view(graphiql=True)),
 
     ### this section redirects control flow to the API app in Django
-    path('api/TODO', api_views.remove_me), # should allow "buy"
-    path('api/TODO', api_views.remove_me), # should allow "sell"
-    path('api/TODO', api_views.remove_me), # should allow "list"
-    path('api/TODO', api_views.remove_me), # should allow "register"
+    path('api/buy', api_views.buy), # should allow "buy"
+    path('api/sell', api_views.sell), # should allow "sell"
+    path('api/list', api_views.list), # should allow "list"
+    path('api/register', api_views.register), # should allow "register"
 
-    ### this section redirects control flow to the Web app in Django
+    ### this section redirects control flow to the Web app in Django - will be deprecated!
     path('register', web_views.register),
     path('login', web_views.login),
     path('logout', web_views.logout),
