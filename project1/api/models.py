@@ -33,7 +33,7 @@ class UserModel(models.Model):
     password = models.CharField(max_length=256, null=True)
     username = models.CharField(max_length=256, null=True)
 
-    portfolio = models.OneToOneField(PortfolioModel, on_delete=models.CASCADE)
+    portfolio = models.OneToOneField(PortfolioModel, on_delete=models.CASCADE, )
 
 # a class containing what happened in a purchase (who made it, when it was made, what it traded)
 class PurchaseModel(models.Model):

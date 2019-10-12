@@ -17,17 +17,19 @@ from django.contrib import admin
 from django.urls import path, re_path, include
 from graphene_django.views import GraphQLView
 
+from django.views.decorators.csrf import csrf_exempt
+
 import project1.api.views as api_views
 import project1.web.views as web_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('graphql', GraphQLView.as_view(graphiql=True)),
+    path('graphql', csrf_exempt(GraphQLView.as_view(graphiql=True))),
 
     ### this section redirects control flow to the API app in Django
     path('api/buy', api_views.buy), # should allow "buy"
     path('api/sell', api_views.sell), # should allow "sell"
-    path('api/list', api_views.list), # should allow "list"
+    path('api/list', api_views.api_list), # should allow "list"
     path('api/register', api_views.register), # should allow "register"
 
     ### this section redirects control flow to the Web app in Django - will be deprecated!

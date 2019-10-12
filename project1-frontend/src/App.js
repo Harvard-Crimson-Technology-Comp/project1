@@ -1,25 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+/** @jsx jsx */
+import { ApolloProvider } from '@apollo/react-hooks';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { createClient } from './apollo';
+import { routes } from './routes';
+import { jsx } from '@emotion/core';
+
+const client = createClient();
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ApolloProvider client={client}>
+      <BrowserRouter>
+        {<Switch>
+          {routes.map(route => (
+            <Route {...route} key={route.path} />
+          ))}
+        </Switch>}
+      </BrowserRouter>
+    </ApolloProvider>
   );
 }
 

@@ -1,0 +1,99 @@
+/** @jsx jsx */
+import { jsx } from '@emotion/core';
+import React from 'react';
+import fetch from 'node-fetch';
+
+type FormProps = {};
+
+type FormState = {
+    first_name: string,
+    last_name: string,
+    username: string,
+    password: string,
+    result: any
+};
+
+const resultStyle = {
+    "word-break": "break-all",
+    "padding": "20px"
+};
+
+export class RegisterForm extends React.Component<FormProps, FormState> {
+    constructor(props: any) {
+        super(props);
+        this.state = {
+            first_name: '',
+            last_name: '',
+            username: '',
+            password: '',
+            result: ''
+        };
+
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleChange(event: any) {
+        const target: any = event.target;
+        const name: FormState = target.name;
+        const value: FormState = target.value;
+
+        this.setState({
+            // @ts-ignore
+            [name]: value
+        });
+    }
+
+    handleSubmit(event: any) {
+        let formData = new FormData();
+        for (var key in this.state) {
+            // @ts-ignore
+            formData.append(key, this.state[key]);
+        }
+
+        // @ts-ignore
+        fetch('http://127.0.0.1:8000/api/register', {
+            method: 'POST',
+            body: formData
+        })
+        .then(function (result: any) { return result.json(); })
+        .then((result: any) => 
+            this.setState({
+                "result": JSON.stringify(result)}));
+
+        event.preventDefault();
+    }
+
+    render() {
+        return (
+            <>
+                <div style={resultStyle}>
+                    <p>{this.state.result}</p>
+                </div>
+                <form onSubmit={this.handleSubmit}>
+                    <label>
+                        First Name:
+                        <input type="text" name="first_name" value={this.state.first_name} onChange={this.handleChange} />
+                    </label>
+                    <br />
+                    <label>
+                        Last Name:
+                        <input type="text" name="last_name" value={this.state.last_name} onChange={this.handleChange} />
+                    </label>
+                    <br/>
+                    <label>
+                        Username: 
+                        <input type="text" name="username" value={this.state.username} onChange={this.handleChange} />
+                    </label>
+                    <br/>
+                    <label>
+                        Password: 
+                        <input type="password" name="password" value={this.state.password} onChange={this.handleChange} />
+                    </label>
+                    <br/>
+                    <input type="submit" value="submit"/>
+                </form>
+            </>
+        );
+    }
+}
