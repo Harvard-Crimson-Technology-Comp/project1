@@ -123,3 +123,18 @@ git add .
 git commit -m "submitting second half"
 git push
 ```
+-----
+##### 10/17 Update
+1. For this last section of the first project, we just want you to make a GraphQL query via Apollo, and display the resulting data on your index page. That being said, please make at least 1 GraphQL query (```gql```) and use the data (```useQuery```) to display at least 1 figure or table on _Index.tsx_. 
+2. Don't forget to pull our source code with
+```
+git pull src master
+```
+3. Also don't forget you can run your backend with ```python3 manage.py runserver 0.0.0.0:8000``` and you can run the frontend by making sure you're in the frontend directory and running ```npm start```. 
+4. When you're done, simply
+```
+git add .
+git commit -m "completing project1"
+git push
+```
+And you should be good to go!

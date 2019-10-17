@@ -10,26 +10,12 @@ const imageStyle = {
   borderRadius: "12px"
 };
 
-const STATS_QUERY = gql`
-  query {
-    users {
-      id
-      username
-    }
-    stocks {
-      symbol
-      quantity
-    }
-    portfolios {
-      cash
-    }
-  }
-`;
+const QUERY = gql``;
 
 export function Index() {
   let contents;
 
-  const { loading, error, data } = useQuery(STATS_QUERY);
+  const { loading, error, data } = useQuery(QUERY);
 
   if (loading) {
     contents = <Loading></Loading>;
@@ -37,23 +23,6 @@ export function Index() {
   else if (error) {
     contents = <p>{error}</p>;
   } else {
-    let total_cash = data.portfolios.reduce((sum: number, x: any) => sum + parseFloat(x.cash), 0.0);
-
-    let num_users: number = data.users.length;
-    let usernames: any = data.users.map((user: any) => <li>{user.username}</li>);
-
-    let stocks: any = {};
-
-    data.stocks.forEach((stock: any) => {
-      if (stocks.hasOwnProperty(stock.symbol)) {
-        stocks[stock.symbol] += stock.quantity;
-      } else {
-        stocks[stock.symbol] = stock.quantity;
-      }
-    });
-
-    let stocks_html = Object.keys(stocks).map((symbol: string) => <li>{symbol} - {stocks[symbol]}</li>);
-
     contents = (
       <div>
         <hr></hr>
@@ -73,17 +42,6 @@ export function Index() {
         <p>This page should be informational.</p>
         <p>You can also display stats or things here if you want.</p>
         <hr></hr>
-        <p>Total Cash: ${total_cash.toFixed(2)}</p>
-        <p>Cash/Users: ${(total_cash / num_users).toFixed(2)}</p>
-        <p>Number of Users: {num_users}</p>
-        <p>Usernames:</p>
-        <ol>
-          {usernames}
-        </ol>
-        <p>Stocks:</p>
-        <ul>
-          {stocks_html}
-        </ul>
       </div>
     );
   }
